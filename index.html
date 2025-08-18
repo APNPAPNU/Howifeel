@@ -1,6 +1,3 @@
-
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,201 +5,348 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A Letter to Camryn</title>
   
+  <!-- Heart Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>❤️</text></svg>">
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-   body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Crimson Pro', serif;
-  background: url('https://www.transparenttextures.com/patterns/aged-paper.png');
-  background-color: #f9f5e7;
-  background-size: cover;
-  line-height: 1.9;
-  color: #3b2f2f;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  text-align: center; /* center everything by default */
-}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Crimson Pro', serif;
+      background: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+      background-color: #f9f5e7;
+      background-size: cover;
+      line-height: 1.9;
+      color: #3b2f2f;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      text-align: center;
+    }
 
-.letter {
-  max-width: 750px;
-  margin: 2rem auto;
-  padding: 2.5rem;
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 18px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-  border: 1px solid rgba(0,0,0,0.08);
-  backdrop-filter: blur(4px);
-  animation: fadeIn 1.5s ease;
-}
+    /* Password Protection Styles */
+    .password-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
 
-h1, h2 {
-  font-family: 'Great Vibes', cursive;
-  margin-bottom: 1rem;
-  color: #5a3921;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
+    .password-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      max-width: 400px;
+      width: 90%;
+    }
 
-h1 { font-size: 2.8rem; }
-h2 { margin-top: 2rem; font-size: 2rem; }
+    .password-box h2 {
+      font-family: 'Great Vibes', cursive;
+      color: #5a3921;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
 
-p, li {
-  font-size: 1.1rem;
-  margin-bottom: 1.2rem;
-  max-width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-}
+    .password-input {
+      width: 100%;
+      padding: 12px;
+      margin: 1rem 0;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      text-align: center;
+      font-family: 'Crimson Pro', serif;
+    }
 
-ul {
-  margin: 0 auto 1.5rem auto;
-  list-style-type: square;
-  text-align: left; /* keep bullet lists readable */
-  display: inline-block; /* centers the list as a block */
-}
+    .password-input:focus {
+      outline: none;
+      border-color: #b89b72;
+    }
 
-/* Subtle fade-in */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(15px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+    .password-btn {
+      background: #b89b72;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-family: 'Crimson Pro', serif;
+      transition: background 0.3s;
+    }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-thumb { background: #b89b72; border-radius: 10px; }
-::-webkit-scrollbar-track { background: #f9f5e7; }
+    .password-btn:hover {
+      background: #9d8660;
+    }
 
-/* Mobile adjustments */
-@media (max-width: 600px) {
-  .letter {
-    margin: 1rem;
-    padding: 1.5rem;
-  }
-  h1 {font-size: 2rem;}
-  h2 {font-size: 1.4rem;}
-  p, li {font-size: 1rem;}
-}
+    .password-error {
+      color: #d32f2f;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
 
-    /* Subtle fade-in */
+    /* Countdown Timer Styles */
+    .countdown-container {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1rem;
+      border-bottom: 2px solid #b89b72;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .countdown-timer {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.5rem;
+      color: #5a3921;
+      margin-bottom: 0.5rem;
+    }
+
+    .timer-display {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #d32f2f;
+    }
+
+    .letter {
+      max-width: 750px;
+      margin: 2rem auto;
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      border: 1px solid rgba(0,0,0,0.08);
+      backdrop-filter: blur(4px);
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1, h2 {
+      font-family: 'Great Vibes', cursive;
+      margin-bottom: 1rem;
+      color: #5a3921;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    h1 { font-size: 2.8rem; }
+    h2 { margin-top: 2rem; font-size: 2rem; }
+
+    p, li {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      max-width: 95%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    ul {
+      margin: 0 auto 1.5rem auto;
+      list-style-type: square;
+      text-align: left;
+      display: inline-block;
+    }
+
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(15px);}
       to {opacity: 1; transform: translateY(0);}
     }
 
-    /* Decorative scroll bar (iPhone/Safari ignores but still good on desktop) */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #b89b72;
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f9f5e7;
-    }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-thumb { background: #b89b72; border-radius: 10px; }
+    ::-webkit-scrollbar-track { background: #f9f5e7; }
 
-    /* Responsive tweaks for iPhone */
     @media (max-width: 600px) {
       .letter {
         margin: 1rem;
         padding: 1.5rem;
       }
       h1 {font-size: 2rem;}
-      h2 {font-size: 1.5rem;}
+      h2 {font-size: 1.4rem;}
       p, li {font-size: 1rem;}
+      .countdown-timer {font-size: 1.2rem;}
+      .timer-display {font-size: 1rem;}
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
-<h1>Who I Am</h1>
-    <p>I'm 33 years old, and I know myself very well. I don't say things like this lightly, baby.</p>
-    <p>In my life, I've probably told 5 women words like these. Each time, my heart was broken. Two of them cheated on me. This is not easy for me — because I know what it really means to love someone.</p>
-    <p>I've lived through so much — married 3 times, father to a daughter I love. I've traveled the world, owned homes, lost everything more than once. I've experienced life in ways that have shaped who I am today.</p>
-    <p>And I genuinely mean it when I say you are more beautiful than anyone I've ever seen. I'm not just saying it — I wholeheartedly mean it. I don't know what it is about you, but you are beyond every woman I've ever laid eyes on.</p>
+<body>
+  <!-- Password Protection Overlay -->
+  <div class="password-overlay" id="passwordOverlay">
+    <div class="password-box">
+      <h2>💕 Protected Letter 💕</h2>
+      <p>Please enter the password to view this letter:</p>
+      <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+      <br>
+      <button class="password-btn" onclick="checkPassword()">Enter</button>
+      <div class="password-error" id="passwordError"></div>
+    </div>
+  </div>
 
-    <h2>The First Time I Saw You</h2>
-    <p>The second I saw you — that first picture you sent — I literally said out loud, "Oh my God, she's beautiful."</p>
-    <p>I never understood how people could just see someone and instantly fall in love. But the moment your face popped up on my screen, my heart fell so hard.</p>
-    <p>Yes, I was vulnerable at the time. But still — I just think you are so unbelievably beautiful. And I need you to know: I'm not a boy. I'm not a child.</p>
-    <p>I am a man, Camryn. A whole man. I've lived a whole life. I've had my heart broken many times. I've loved before, but never like this. Not the way I feel about you.</p>
-    <p>This is the kind of love I didn't think even existed. This is some next-level shit.</p>
-    <p>I wasn't looking for anyone. I wasn't searching for love. But it happened. And it hit me so hard.</p>
-    <p>When I found you, my heart felt at home. I thought, "Oh my God, it's her. The girl I've always been looking for."</p>
-    <p>As cheesy as it sounds — I am absolutely, madly, completely in love with you. In every way imaginable.</p>
-    <p>I care about you so much that I literally feel anguish and pain inside from it. That's how deeply you've gotten into my soul.</p>
+  <!-- Main Content -->
+  <div id="mainContent" class="hidden">
+    <!-- Countdown Timer -->
+    <div class="countdown-container">
+      <div class="countdown-timer">Time Until Page is Deleted</div>
+      <div class="timer-display" id="countdownDisplay">Loading...</div>
+    </div>
 
-    <h2>What Loving You Means</h2>
-    <p>Loving you isn't simple. I know what's at stake.</p>
-    <p>It means I'll have to fight — against social stigmas, against family pressure, maybe even against the odds. Or, it means I risk letting my heart break again.</p>
-    <p>It could mean losing half of what I own again. It could mean moving, starting life over once more. It means working harder, pushing myself to provide more.</p>
-    <p>It means lonely nights. It means growing together, learning each other completely.</p>
-    <p>But it also means something greater:</p>
-    <ul>
-    <li>It means wanting to have a baby with you. I've wanted another child for so long, but nobody wanted that with me…</li>
-    <li>It means figuring out how we build our life — do I move to you, do you move to me, do we find a way long-distance?</li>
-    <li>It means you've completely changed my desires — I only want you.</li>
-    </ul>
+    <div class="letter">
+      <h1>Who I Am</h1>
+      <p>I'm 33 years old, and I know myself very well. I don't say things like this lightly, baby.</p>
+      <p>In my life, I've probably told 5 women words like these. Each time, my heart was broken. Two of them cheated on me. This is not easy for me — because I know what it really means to love someone.</p>
+      <p>I've lived through so much — married 3 times, father to a daughter I love. I've traveled the world, owned homes, lost everything more than once. I've experienced life in ways that have shaped who I am today.</p>
+      <p>And I genuinely mean it when I say you are more beautiful than anyone I've ever seen. I'm not just saying it — I wholeheartedly mean it. I don't know what it is about you, but you are beyond every woman I've ever laid eyes on.</p>
 
-    <h2>What I Love About You</h2>
-    <p>I love every single feature of your face — your eyes, your lips, your cheeks, your chin, your ears, your nose — everything is so beautiful to me. Those hazel eyes with the different colors around the center, that light brown that draws me in completely. Your silly, mischievous smile that makes my heart skip beats every single time.</p>
-    <p>I love your body — every curve, every inch of you is absolutely immaculate and perfect to me.</p>
-    <p>I love that cute laugh and those sweetest little giggles that just melt me. I love your voice — that beautiful Southern accent that feels like home, like having my own little Southern mommy. When you get sleepy and your voice changes to that almost dazed tone, it's so incredibly cute. And when you're being playful with those laughs and smiles, or when you use that sexy voice... my God, it's heaven-sent.</p>
-    <p>I love your personality quirks — your random moaning, when you get sassy, the way you say "nigga" so naturally. I love when you say "I know" (even though it's eye-roll inducing, it's still cute). I love when you simply say "thank you, that's sweet."</p>
-    <p>I love that you were homeschooled. I love that you love Jesus. I love your dreams of being a mommy, homeschooling kids, teaching them about Jesus. Those dreams are beautiful to me.</p>
-    <p>I love how you vibe with my daughter, how kind and sweet you can be when you want to be. That means the world to me.</p>
-    <p>I love talking late at night with you — you literally take my breath away, genuinely make my heart race. Just connecting with you, learning about you, your past, your family, your situation — everything I've learned about you has made me love you more and more.</p>
-    <p>I love the way you make me see myself differently. You've made me feel attractive again when I had forgotten what that felt like. Even something as small as a haircut — you've given me confidence I forgot I had. People notice me again, compliment me, and I think, damn, she saw beauty in me I'd lost sight of.</p>
-    <p>I love how you make me feel young and alive again. I love how you make me want to live, to share my life with you. I love the way you make me feel happy and flustered and romantic and goofy and stronger and better. I yearn so badly for you.</p>
-    <p>You've made me want to be a better version of myself, made me want to be a better dad to my daughter, made me want to fight to be that man.</p>
-    <p>I love your gentleness, your kindness, the way you see the world. I love how you challenge me to be better. I love the way you think, the way you process things.</p>
-    <p>To me you are the peak of female beauty.</p>
+      <h2>The First Time I Saw You</h2>
+      <p>The second I saw you — that first picture you sent — I literally said out loud, "Oh my God, she's beautiful."</p>
+      <p>I never understood how people could just see someone and instantly fall in love. But the moment your face popped up on my screen, my heart fell so hard.</p>
+      <p>Yes, I was vulnerable at the time. But still — I just think you are so unbelievably beautiful. And I need you to know: I'm not a boy. I'm not a child.</p>
+      <p>I am a man, Camryn. A whole man. I've lived a whole life. I've had my heart broken many times. I've loved before, but never like this. Not the way I feel about you.</p>
+      <p>This is the kind of love I didn't think even existed. This is some next-level shit.</p>
+      <p>I wasn't looking for anyone. I wasn't searching for love. But it happened. And it hit me so hard.</p>
+      <p>When I found you, my heart felt at home. I thought, "Oh my God, it's her. The girl I've always been looking for."</p>
+      <p>As cheesy as it sounds — I am absolutely, madly, completely in love with you. In every way imaginable.</p>
+      <p>I care about you so much that I literally feel anguish and pain inside from it. That's how deeply you've gotten into my soul.</p>
 
-    <h2>About Our Age Difference</h2>
-    <p>I know the age difference between us will be a challenge. I know people will have opinions, and some might judge us harshly. But I want you to know — I love you for you, not for anyone else's opinions or expectations.</p>
-    <p>Yes, it will be tough and hard at times, but that's okay with me. I'm not afraid of difficult scenarios and situations. I've faced challenges before, and I'd face them all again for the chance to love you.</p>
-    <p>I don't love you because I'm missing something in my life — I love you because you add so much to me. You don't fill a void; you make everything brighter.</p>
-    <p>My nanny once told me about my grandpa — he was a gentleman, he was sweet to her, and he treated her different than all the boys did. He treated her like he was a man. That's what I want to do with you. I want you to look at me and think, "That's a man, that's my man," and be proud.</p>
+      <h2>What Loving You Means</h2>
+      <p>Loving you isn't simple. I know what's at stake.</p>
+      <p>It means I'll have to fight — against social stigmas, against family pressure, maybe even against the odds. Or, it means I risk letting my heart break again.</p>
+      <p>It could mean losing half of what I own again. It could mean moving, starting life over once more. It means working harder, pushing myself to provide more.</p>
+      <p>It means lonely nights. It means growing together, learning each other completely.</p>
+      <p>But it also means something greater:</p>
+      <ul>
+        <li>It means wanting to have a baby with you. I've wanted another child for so long, but nobody wanted that with me…</li>
+        <li>It means figuring out how we build our life — do I move to you, do you move to me, do we find a way long-distance?</li>
+        <li>It means you've completely changed my desires — I only want you.</li>
+      </ul>
 
-    <h2>What Our Future Looks Like</h2>
-    <p>I dream about our life together all the time. I picture lazy Sunday mornings where we're still in bed, you curled up against me, your hair messy and beautiful. I imagine us decorating our first place together — you picking out curtains while I pretend to have opinions about throw pillows, just happy to watch you make our house a home.</p>
-    <p>I see you teaching our children, homeschooling them with that gentle patience you have. I picture you reading to them, teaching them about Jesus, being the incredible mother I know you'll be. I imagine coming home from work to find you and our kids in the kitchen, flour in your hair from baking something together.</p>
-    <p>I dream of quiet evenings where we're just talking, laughing at something silly, you making that cute face you make when you're being sassy. I picture us growing old together — you still beautiful at 50, 60, 70 — me still looking at you the same way I do now.</p>
-    <p>I see us building something real and lasting, something that people look at and say "that's what love should be."</p>
+      <h2>What I Love About You</h2>
+      <p>I love every single feature of your face — your eyes, your lips, your cheeks, your chin, your ears, your nose — everything is so beautiful to me. Those hazel eyes with the different colors around the center, that light brown that draws me in completely. Your silly, mischievous smile that makes my heart skip beats every single time.</p>
+      <p>I love your body — every curve, every inch of you is absolutely immaculate and perfect to me.</p>
+      <p>I love that cute laugh and those sweetest little giggles that just melt me. I love your voice — that beautiful Southern accent that feels like home, like having my own little Southern mommy. When you get sleepy and your voice changes to that almost dazed tone, it's so incredibly cute. And when you're being playful with those laughs and smiles, or when you use that sexy voice... my God, it's heaven-sent.</p>
+      <p>I love your personality quirks — your random moaning, when you get sassy, the way you say "nigga" so naturally. I love when you say "I know" (even though it's eye-roll inducing, it's still cute). I love when you simply say "thank you, that's sweet."</p>
+      <p>I love that you were homeschooled. I love that you love Jesus. I love your dreams of being a mommy, homeschooling kids, teaching them about Jesus. Those dreams are beautiful to me.</p>
+      <p>I love how you vibe with my daughter, how kind and sweet you can be when you want to be. That means the world to me.</p>
+      <p>I love talking late at night with you — you literally take my breath away, genuinely make my heart race. Just connecting with you, learning about you, your past, your family, your situation — everything I've learned about you has made me love you more and more.</p>
+      <p>I love the way you make me see myself differently. You've made me feel attractive again when I had forgotten what that felt like. Even something as small as a haircut — you've given me confidence I forgot I had. People notice me again, compliment me, and I think, damn, she saw beauty in me I'd lost sight of.</p>
+      <p>I love how you make me feel young and alive again. I love how you make me want to live, to share my life with you. I love the way you make me feel happy and flustered and romantic and goofy and stronger and better. I yearn so badly for you.</p>
+      <p>You've made me want to be a better version of myself, made me want to be a better dad to my daughter, made me want to fight to be that man.</p>
+      <p>I love your gentleness, your kindness, the way you see the world. I love how you challenge me to be better. I love the way you think, the way you process things.</p>
+      <p>To me you are the peak of female beauty.</p>
 
-    <h2>Your Beautiful Maturity</h2>
-    <p>I need you to know something, Camryn — despite being 18, you have a wisdom and depth that amazes me. You're not like other girls your age. There's something about your heart, your mind, the way you see the world that draws me to you beyond just your incredible beauty.</p>
-    <p>You have this old soul quality that makes me feel like I'm talking to someone who truly understands life. Your faith, your dreams of being a mother and teacher, the way you carry yourself — it shows a maturity that goes way beyond your years.</p>
-    <p>I'm not in love with you because you're young. I'm in love with you because of who you are — your character, your heart, your spirit. Age is just a number when two souls connect the way ours do.</p>
+      <h2>About Our Age Difference</h2>
+      <p>I know the age difference between us will be a challenge. I know people will have opinions, and some might judge us harshly. But I want you to know — I love you for you, not for anyone else's opinions or expectations.</p>
+      <p>Yes, it will be tough and hard at times, but that's okay with me. I'm not afraid of difficult scenarios and situations. I've faced challenges before, and I'd face them all again for the chance to love you.</p>
+      <p>I don't love you because I'm missing something in my life — I love you because you add so much to me. You don't fill a void; you make everything brighter.</p>
+      <p>My nanny once told me about my grandpa — he was a gentleman, he was sweet to her, and he treated her different than all the boys did. He treated her like he was a man. That's what I want to do with you. I want you to look at me and think, "That's a man, that's my man," and be proud.</p>
 
-    <h2>How You've Healed Me</h2>
-    <p>Before you, I was broken in ways I didn't even realize. I had given up on the idea that someone could love me completely, that I could feel this kind of connection again. I was just going through the motions, existing but not really living.</p>
-    <p>Then you came along and healed parts of me I thought were permanently damaged. You've shown me what it feels like to be truly seen and appreciated. You've made me believe in myself again, made me want to be the best version of who I can be.</p>
-    <p>You've healed my trust in love itself. After being cheated on, after having my heart broken so many times, I had built walls that I thought were permanent. But somehow you walked right through them like they were made of paper.</p>
-    <p>You've given me hope again. Hope for a future I actually want to fight for. Hope that I can be the man someone like you deserves. You've brought light into places in my heart that had been dark for so long.</p>
-    <p>I don't know how you did it, baby, but you fixed me. And I'll spend the rest of my life trying to heal any hurt you've ever felt, trying to love you the way you've loved me back to life.</p>
-    <p>I don't have money. I live paycheck to paycheck. I come home every day drenched in sweat, bleeding, and exhausted.</p>
-    <p>I hide a lot of insecurities. I feel like you're way too beautiful for me — way out of my league. I've been messed up in my head for a long time.</p>
-    <p>And I wonder… If we had a baby, would your family ever accept me?</p>
+      <h2>What Our Future Looks Like</h2>
+      <p>I dream about our life together all the time. I picture lazy Sunday mornings where we're still in bed, you curled up against me, your hair messy and beautiful. I imagine us decorating our first place together — you picking out curtains while I pretend to have opinions about throw pillows, just happy to watch you make our house a home.</p>
+      <p>I see you teaching our children, homeschooling them with that gentle patience you have. I picture you reading to them, teaching them about Jesus, being the incredible mother I know you'll be. I imagine coming home from work to find you and our kids in the kitchen, flour in your hair from baking something together.</p>
+      <p>I dream of quiet evenings where we're just talking, laughing at something silly, you making that cute face you make when you're being sassy. I picture us growing old together — you still beautiful at 50, 60, 70 — me still looking at you the same way I do now.</p>
+      <p>I see us building something real and lasting, something that people look at and say "that's what love should be."</p>
 
-    <h2>What I Want With You</h2>
-    <p>I want to be your man. I don't care about prejudice or consequence. If you'd have me, I'd be the best damn man you'll ever know.</p>
-    <p>I'm not perfect — I'm weird, I'm flawed — but I can love the hell out of you. And I know what I'd have to lose to love you. That's why I don't take this lightly.</p>
-    <p>But I also know this: we can have a beautiful life together. Loving you feels like coming home after being lost for years.</p>
-    <p>I imagine you as my wife, as a sweet little housewife one day, us raising a family. You empower me, inspire me, make me feel alive again.</p>
-    <p>The moments I spend with you are some of my favorite moments. If by some chance I get to share my life with you, I'd just about do anything for you.</p>
-    <p>Camryn, I want you. I want you badly. And if you'd let me, I'd love you like no one else ever has.</p>
-    <p>I'd risk heartbreak. I'd risk losing everything. Just for the chance to love you.</p>
+      <h2>Your Beautiful Maturity</h2>
+      <p>I need you to know something, Camryn — despite being 18, you have a wisdom and depth that amazes me. You're not like other girls your age. There's something about your heart, your mind, the way you see the world that draws me to you beyond just your incredible beauty.</p>
+      <p>You have this old soul quality that makes me feel like I'm talking to someone who truly understands life. Your faith, your dreams of being a mother and teacher, the way you carry yourself — it shows a maturity that goes way beyond your years.</p>
+      <p>I'm not in love with you because you're young. I'm in love with you because of who you are — your character, your heart, your spirit. Age is just a number when two souls connect the way ours do.</p>
 
-    <h2>My Promise to You</h2>
-    <p>Yes, Camryn, I do very much love you. I want to help you, to hold you, to have you. I want to make you feel like you are the only girl that exists to me. I want you to think of me and miss me. I want us. I want our love.</p>
-    <p>I have so very, very much fallen in love with you, and I don't know what to do with this love. I want to give it all to you. I want to love you with all the love I can muster.</p>
-    <p>But if the day comes when life takes us in different directions, I will take comfort in knowing the time I've spent with you has been some of my favorite moments and that you found all the happiness you deserve.</p>
-    <p>I want you to have all the happiness in the world. I want you to have all of your dreams.</p>
+      <h2>How You've Healed Me</h2>
+      <p>Before you, I was broken in ways I didn't even realize. I had given up on the idea that someone could love me completely, that I could feel this kind of connection again. I was just going through the motions, existing but not really living.</p>
+      <p>Then you came along and healed parts of me I thought were permanently damaged. You've shown me what it feels like to be truly seen and appreciated. You've made me believe in myself again, made me want to be the best version of who I can be.</p>
+      <p>You've healed my trust in love itself. After being cheated on, after having my heart broken so many times, I had built walls that I thought were permanent. But somehow you walked right through them like they were made of paper.</p>
+      <p>You've given me hope again. Hope for a future I actually want to fight for. Hope that I can be the man someone like you deserves. You've brought light into places in my heart that had been dark for so long.</p>
+      <p>I don't know how you did it, baby, but you fixed me. And I'll spend the rest of my life trying to heal any hurt you've ever felt, trying to love you the way you've loved me back to life.</p>
+      <p>I don't have money. I live paycheck to paycheck. I come home every day drenched in sweat, bleeding, and exhausted.</p>
+      <p>I hide a lot of insecurities. I feel like you're way too beautiful for me — way out of my league. I've been messed up in my head for a long time.</p>
+      <p>And I wonder… If we had a baby, would your family ever accept me?</p>
 
-    <h2>With All My Heart, ~Jon</h2>
-    <p><em></em></p>
+      <h2>What I Want With You</h2>
+      <p>I want to be your man. I don't care about prejudice or consequence. If you'd have me, I'd be the best damn man you'll ever know.</p>
+      <p>I'm not perfect — I'm weird, I'm flawed — but I can love the hell out of you. And I know what I'd have to lose to love you. That's why I don't take this lightly.</p>
+      <p>But I also know this: we can have a beautiful life together. Loving you feels like coming home after being lost for years.</p>
+      <p>I imagine you as my wife, as a sweet little housewife one day, us raising a family. You empower me, inspire me, make me feel alive again.</p>
+      <p>The moments I spend with you are some of my favorite moments. If by some chance I get to share my life with you, I'd just about do anything for you.</p>
+      <p>Camryn, I want you. I want you badly. And if you'd let me, I'd love you like no one else ever has.</p>
+      <p>I'd risk heartbreak. I'd risk losing everything. Just for the chance to love you.</p>
+
+      <h2>My Promise to You</h2>
+      <p>Yes, Camryn, I do very much love you. I want to help you, to hold you, to have you. I want to make you feel like you are the only girl that exists to me. I want you to think of me and miss me. I want us. I want our love.</p>
+      <p>I have so very, very much fallen in love with you, and I don't know what to do with this love. I want to give it all to you. I want to love you with all the love I can muster.</p>
+      <p>But if the day comes when life takes us in different directions, I will take comfort in knowing the time I've spent with you has been some of my favorite moments and that you found all the happiness you deserve.</p>
+      <p>I want you to have all the happiness in the world. I want you to have all of your dreams.</p>
+
+      <h2>With All My Heart, ~Jon</h2>
+      <p><em></em></p>
+    </div>
+  </div>
+
   <script>
+    // Password protection
+    function checkPassword() {
+      const password = document.getElementById('passwordInput').value;
+      const correctPassword = 'camryn'; // Change this to your desired password
+      
+      if (password === correctPassword) {
+        document.getElementById('passwordOverlay').style.display = 'none';
+        document.getElementById('mainContent').classList.remove('hidden');
+        startCountdown();
+      } else {
+        document.getElementById('passwordError').textContent = 'Incorrect password. Please try again.';
+      }
+    }
+
+    // Allow Enter key to submit password
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+
+    // Countdown timer (48 hours from page load)
+    function startCountdown() {
+      // Set the countdown time (48 hours from now)
+      const countdownTime = new Date().getTime() + (48 * 60 * 60 * 1000);
+      
+      const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countdownTime - now;
+        
+        // Calculate days, hours, minutes, seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Display the countdown
+        const display = `${days > 0 ? days + 'd ' : ''}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        document.getElementById('countdownDisplay').textContent = display;
+        
+        // When countdown is finished
+        if (distance < 0) {
+          clearInterval(timer);
+          document.getElementById('countdownDisplay').textContent = 'Page has expired';
+          document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-family: Crimson Pro, serif;"><h1 style="color: #d32f2f;">This page has expired and is no longer available.</h1></div>';
+        }
+      }, 1000);
+    }
+
     // Gentle entrance effect for paragraphs
     const paragraphs = document.querySelectorAll('p, li');
     const observer = new IntersectionObserver(entries => {
